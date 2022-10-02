@@ -16,6 +16,14 @@ html {
   scroll-behavior: smooth;
 }
 
+html.night-mode {
+  color: #c9d1d9;
+}
+
+html:not(.night-mode) {
+  color: #24292f;
+}
+
 *,
 *:before,
 *:after {
@@ -33,10 +41,15 @@ body {
   font-family: var(--font-family-base);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-2);
-  margin-inline: auto;
   padding-inline-end: var(--horizontal-padding);
   padding-inline-start: var(--horizontal-padding);
-  width: 88vw;
+}
+
+@media screen {
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+  }
 }
 
 @supports (padding: constant(safe-area-inset-left)) and
@@ -65,8 +78,8 @@ body {
 
 @media screen {
   body {
-    background-color: var(--color-bg);
-    color: var(--color-fg);
+    margin-inline: auto;
+    width: 88vw;
   }
 }
 
@@ -276,6 +289,16 @@ pre {
   overflow: auto;
   padding: 1em;
   white-space: pre;
+}
+
+@media print {
+  body {
+    --horizontal-padding: 75px;
+  }
+
+  body pre code {
+    white-space: pre-wrap;
+  }
 }
 
 p code,
