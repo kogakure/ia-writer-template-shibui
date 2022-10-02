@@ -34,7 +34,33 @@ body {
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-2);
   margin-inline: auto;
+  padding-inline-end: var(--horizontal-padding);
+  padding-inline-start: var(--horizontal-padding);
   width: 88vw;
+}
+
+@supports (padding: constant(safe-area-inset-left)) and
+  (padding: constant(safe-area-inset-right)) {
+  body {
+    padding-inline-start: calc(
+      var(--horizontal-padding) + constant(safe-area-inset-left)
+    );
+    padding-inline-end: calc(
+      var(--horizontal-padding) + constant(safe-area-inset-right)
+    );
+  }
+}
+
+@supports (padding: env(safe-area-inset-left)) and
+  (padding: env(safe-area-inset-right)) {
+  body {
+    padding-inline-end: calc(
+      var(--horizontal-padding) + env(safe-area-inset-right)
+    );
+    padding-inline-start: calc(
+      var(--horizontal-padding) + env(safe-area-inset-left)
+    );
+  }
 }
 
 @media screen {
@@ -46,12 +72,14 @@ body {
 
 @media (min-width: 768px) {
   body {
+    --horizontal-padding: 15px;
     width: 66vw;
   }
 }
 
 @media (min-width: 1200px) {
   body {
+    --horizontal-padding: 45px;
     width: 55vw;
   }
 }
